@@ -27,17 +27,16 @@ public class AudioManager : MonoBehaviour
 
     public void SetMusic(Player.LevelSpeed levelSpeed)
     {
-        musicSource.Pause();
         switch (levelSpeed)
         {
             case Player.LevelSpeed.Slow:
-                musicSource.resource = musicForGameStage[0];
+                musicSource.clip = musicForGameStage[0];
                 break;
             case Player.LevelSpeed.Normal:
-                musicSource.resource = musicForGameStage[1];
+                musicSource.clip = musicForGameStage[1];
                 break;
             case Player.LevelSpeed.Fast:
-                musicSource.resource = musicForGameStage[2];
+                musicSource.clip = musicForGameStage[2];
                 break;
         }
         musicSource.Play();
