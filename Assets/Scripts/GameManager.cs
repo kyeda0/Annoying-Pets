@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private UIHealthPlayer uIHealthPlayer;
     [SerializeField] private GameObject hud;
     [SerializeField] private TextBuff textBuff;
+    [SerializeField] private AudioManager audioManager;
     private Player playerClone;
     private  StageGame stage;
     private void Start()
@@ -29,6 +30,7 @@ public class GameManager : MonoBehaviour
                 playerClone = Instantiate(playerOriginal,new Vector2(0f,-4f),Quaternion.identity);
                 playerClone.OnGameOverEvent += HandleGameOverStage;
                 playerClone.OnTakeDamage += HandleTakeDamageUI; 
+                playerClone.OnCheckSpeed += HandleSetMusic;
                 playerClone.isMoving = true;
                 score.gameObject.SetActive(true);
                 gameObjectSpawner.OnSpawnedBlock += HandleBlockSpawned;
@@ -95,9 +97,14 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("MainScene");
     }
 
-    public void ExitinMenu()
+    public void ExitInMenu()
     {
         SceneManager.LoadScene("MenuScene");
+    }
+
+    private void HandleSetMusic(Player.LevelSpeed levelSpeed)
+    {
+        audioManager.SetMusic(levelSpeed);
     }
 
 }

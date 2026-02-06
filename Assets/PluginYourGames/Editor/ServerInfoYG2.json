@@ -28,11 +28,11 @@
             "platform": true
         },
         {
-            "name": "Appodeal",
+            "name": "YandexMobileAds",
             "version": "1.0",
-            "download": "https://boosty.to/maximalist/posts/4595721f-59f6-4c0b-a911-544a00ab74ae",
+            "download": "https://boosty.to/maximalist/posts/eb519b99-798b-4fcb-8cc6-0445ad171c85",
             "noLoad": true,
-            "doc": "https://max-games.ru/appodeal/",
+            "doc": "https://max-games.ru/plugin-yg/doc/Yandex-Mobile-Ads/",
             "platform": true
         },
         {
@@ -204,10 +204,11 @@
             "doc": "https://max-games.ru/banner/"
         },
         {
-            "name": "WelwiseGames",
+            "name": "Appodeal",
             "version": "1.0",
-            "download": "https://max-games.ru/public/pluginYG2/platforms/WelwiseGames.unitypackage",
-            "doc": "https://max-games.ru/plugin-yg/welwise/",
+            "download": "https://boosty.to/maximalist/posts/4595721f-59f6-4c0b-a911-544a00ab74ae",
+            "noLoad": true,
+            "doc": "https://max-games.ru/appodeal/",
             "platform": true
         },
         {
@@ -216,6 +217,13 @@
             "download": "https://boosty.to/maximalist/posts/bfb0202f-04a3-4bb2-993d-91c9e632d831",
             "noLoad": true,
             "doc": "https://max-games.ru/gamemonetize/",
+            "platform": true
+        },
+        {
+            "name": "WelwiseGames",
+            "version": "1.0",
+            "download": "https://max-games.ru/public/pluginYG2/platforms/WelwiseGames.unitypackage",
+            "doc": "https://max-games.ru/plugin-yg/welwise/",
             "platform": true
         }
     ]
