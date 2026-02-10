@@ -1,6 +1,7 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class StartGameMenu : MonoBehaviour
@@ -21,11 +22,13 @@ public class StartGameMenu : MonoBehaviour
         float time = 0f;
         for (int i = 0; i < texts.Length; i++)
         {
-            texts[i].color = startColor;
+            if(texts[i] != null)
+                texts[i].color = startColor;
         }
         for (int i = 0; i < buttons.Length; i++)
         {
-            buttons[i].GetComponent<Image>().color = startColor;
+            if(buttons[i] != null)
+                buttons[i].GetComponent<Image>().color = startColor;
         }
         while (time < timeDuration)
         {
@@ -33,23 +36,33 @@ public class StartGameMenu : MonoBehaviour
             float t = time/timeDuration;
             for (int i = 0; i < texts.Length; i++)
             {
-                texts[i].color = Color.Lerp(startColor,endColor,t);
+                if(texts[i] != null)
+                    texts[i].color = Color.Lerp(startColor,endColor,t);
             }
             for (int i = 0; i < buttons.Length; i++)
             {
-                buttons[i].GetComponent<Image>().color = Color.Lerp(startColor,endColor,t);
+                if(buttons[i] != null)
+                    buttons[i].GetComponent<Image>().color = Color.Lerp(startColor,endColor,t);
             }
             yield return null;
         }
 
         for (int i = 0; i < texts.Length; i++)
         {
-            texts[i].color = endColor;
+            if(texts[i] != null)
+                texts[i].color = endColor;
         }
         for (int i = 0; i < buttons.Length; i++)
-        {
-            buttons[i].GetComponent<Image>().color = endColor;
+        {   
+            if(buttons[i] != null)
+                buttons[i].GetComponent<Image>().color = endColor;
         }
+    }
+
+
+    public void LoadShopScene()
+    {
+        SceneManager.LoadScene("ShopScene");
     }
 
 }

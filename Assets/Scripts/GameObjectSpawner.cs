@@ -1,13 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.Security.Cryptography;
-using UnityEditor.ShaderGraph.Internal;
+using Unity.Android.Gradle;
 using UnityEngine;
 
 
 public class GameObjectSpawner : MonoBehaviour
 {
     [SerializeField] private List<GameObjects> gameObjects = new List<GameObjects>();
+    [SerializeField]private List<GameObjects> spawnedGameObjects = new List<GameObjects>();
     [SerializeField] private float[] spawnPosX = new float[3]{-2f,0f,2f};
     [SerializeField] private float repeatTime;
     [SerializeField] private float timeToSpawn;
@@ -30,6 +31,24 @@ public class GameObjectSpawner : MonoBehaviour
     {
         CancelInvoke(nameof(SpawnGameObject));
     }
+
+    public void StopSpawnedObject()
+    {
+        for (int i = 0; i < spawnedGameObjects.Count; i++)
+        {
+             if(spawnedGameObjects[i] != null)
+                spawnedGameObjects[i].GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+        }
+    }
+
+    public void StartSpawnedObject()
+    {
+        for (int i = 0; i < spawnedGameObjects.Count; i++)
+        {
+            if(spawnedGameObjects[i] != null)
+                spawnedGameObjects[i].GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+        }
+    }
     private void SpawnGameObject()
     {
         var randomGameObject = GetGameObject();
@@ -40,6 +59,7 @@ public class GameObjectSpawner : MonoBehaviour
         lastGameObject = randomGameObject;
         lastPosX = randomPosX;
         OnSpawnedBlock?.Invoke(block);
+        spawnedGameObjects.Add(block);
     }
 
 

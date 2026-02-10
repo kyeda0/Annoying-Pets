@@ -44,6 +44,7 @@ public class Score : MonoBehaviour
             PlayerPrefs.SetInt("BestScore",bestScore);
             PlayerPrefs.Save();
             YG2.SetLeaderboard("BestPets",bestScore);
+            ShowScore();
         }
     }
 }

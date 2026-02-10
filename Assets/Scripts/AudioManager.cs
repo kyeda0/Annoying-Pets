@@ -8,7 +8,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private GameObject buttonSwitch;
     [SerializeField] private Sprite[] imagesForButton;
     [SerializeField] private AudioClip[] musicForGameStage;
-    private bool isMusicOn;
+    public bool isMusicOn;
 
 
     private void Start()
@@ -46,12 +46,18 @@ public class AudioManager : MonoBehaviour
         if(isMusicOn == true)
         {
             musicSource.Play();
-            buttonSwitch.GetComponent<Image>().sprite = imagesForButton[0];
+            if(buttonSwitch != null)
+            {
+                buttonSwitch.GetComponent<Image>().sprite = imagesForButton[0];
+            }
         }
         else if(isMusicOn == false)
         {
             musicSource.Pause();
-            buttonSwitch.GetComponent<Image>().sprite = imagesForButton[1];
+            if(buttonSwitch != null)
+            {
+                buttonSwitch.GetComponent<Image>().sprite = imagesForButton[1];
+            }    
         }
     }
 

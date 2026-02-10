@@ -7,8 +7,10 @@ public class Player : MonoBehaviour,PlayerInterface
 {
     private Rigidbody2D rigidbody2D;
     private  float speed;
+    private Sprite[] allSkin;
     [SerializeField] private float maxSpeed;
     [SerializeField] private float minSpeed;
+    public int coin;
     public float maxHealth;
     [HideInInspector] public  float health; 
     private float maxLane;
@@ -18,16 +20,24 @@ public class Player : MonoBehaviour,PlayerInterface
     public event Action OnGameOverEvent;
     public event Action <float,float> OnTakeDamage;
     public event Action <Player.LevelSpeed> OnCheckSpeed;
+    public event Action <int> OnCheckCoins;
+
     public bool isMoving;
     public LevelSpeed currentlevelSpeed;
+    private int spriteIndex;
     
     private void Start()
     {
+        coin = PlayerPrefs.GetInt("Coins");
+        spriteIndex = PlayerPrefs.GetInt("SkinsIndex");
         rigidbody2D = GetComponent<Rigidbody2D>();
         health = maxHealth;
         minLane = -1;
         maxLane = 1;
         ChangeSpeed(LevelSpeed.Normal);
+        allSkin = Resources.LoadAll<Sprite>("Skins");
+        GetComponent<SpriteRenderer>().sprite = allSkin[spriteIndex];
+        ChangeCoins();
     }
 
     private void Update()
@@ -105,6 +115,11 @@ public class Player : MonoBehaviour,PlayerInterface
         currentlevelSpeed = levelSpeed;
         SetSpeedLevel();
         OnCheckSpeed?.Invoke(currentlevelSpeed);
+    }
+
+    public void ChangeCoins()
+    {
+        OnCheckCoins?.Invoke(coin);
     }
     public enum LevelSpeed
     {
