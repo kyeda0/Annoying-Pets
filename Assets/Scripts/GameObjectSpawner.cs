@@ -1,7 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Security.Cryptography;
-using Unity.Android.Gradle;
 using UnityEngine;
 
 
@@ -107,6 +105,9 @@ public class GameObjectSpawner : MonoBehaviour
                 break;
             case Player.LevelSpeed.Slow:
                 SwicthSpeedSpawn(1.7f);
+                break;
+            case Player.LevelSpeed.UltraFast:
+                SwicthSpeedSpawn(0.5f);
                 break;
         }
     }

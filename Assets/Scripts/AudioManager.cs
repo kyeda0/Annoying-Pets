@@ -4,6 +4,7 @@ using UnityEngine.UI;
 public class AudioManager : MonoBehaviour
 {
     [SerializeField] private AudioSource musicSource;
+    [SerializeField] private AudioClip audioClipForButton;
     [SerializeField] private AudioSource sfxSource;
     [SerializeField] private GameObject buttonSwitch;
     [SerializeField] private Sprite[] imagesForButton;
@@ -38,6 +39,12 @@ public class AudioManager : MonoBehaviour
             case Player.LevelSpeed.Fast:
                 musicSource.clip = musicForGameStage[2];
                 break;
+            case Player.LevelSpeed.UltraFast:
+                musicSource.clip = musicForGameStage[3];
+                break;
+            case Player.LevelSpeed.ZeroSpeed:
+
+                break;
         }
         musicSource.Play();
     }
@@ -59,6 +66,12 @@ public class AudioManager : MonoBehaviour
                 buttonSwitch.GetComponent<Image>().sprite = imagesForButton[1];
             }    
         }
+    }
+
+
+    public void AudioForButton()
+    {
+        sfxSource.PlayOneShot(audioClipForButton);
     }
 
 }

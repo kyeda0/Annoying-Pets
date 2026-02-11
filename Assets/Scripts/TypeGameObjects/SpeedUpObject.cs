@@ -18,11 +18,15 @@ public class SpeedUpObject : GameObjects
                 CheckLanguageForText("+2 скорости","+2 speed");
                 break;
             case Player.LevelSpeed.Fast:
-                CheckLanguageForText("+0 скорости","+0 speed");
+                player.ChangeSpeed(Player.LevelSpeed.UltraFast);
+                CheckLanguageForText("+2 скорости","+2 speed");
                 break;
             case Player.LevelSpeed.Slow:
                 player.ChangeSpeed(Player.LevelSpeed.Normal);
                 CheckLanguageForText("+2 скорости","+2 speed");
+                break;
+            case Player.LevelSpeed.UltraFast:
+                CheckLanguageForText("+0 скорости","+0 speed");
                 break;
         }
     }

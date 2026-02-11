@@ -63,6 +63,9 @@ public class GameManager : MonoBehaviour
                 playerClone.isMoving = false;
                 hud.SetActive(false);
                 break;
+            case StageGame.TutorialStage:
+                
+                break;
         }
     }
 
@@ -86,7 +89,8 @@ public class GameManager : MonoBehaviour
         StartStage,
         PlayningStage,
         GameOverStage,
-        PauseStage
+        PauseStage,
+        TutorialStage
     }
 
     private void HandleAddScore()

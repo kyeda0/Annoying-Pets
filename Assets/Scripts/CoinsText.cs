@@ -6,7 +6,7 @@ public class CoinsText : MonoBehaviour
     
     public void UpdateCoinsText(int coinsPlayer)
     {
-        GetComponent<TextMeshProUGUI>().text = "x" + coinsPlayer;
+        GetComponent<TextMeshProUGUI>().text = $"x {coinsPlayer}";
     }
 }
 

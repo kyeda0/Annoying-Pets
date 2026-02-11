@@ -10,7 +10,7 @@ public class Player : MonoBehaviour,PlayerInterface
     private Sprite[] allSkin;
     [SerializeField] private float maxSpeed;
     [SerializeField] private float minSpeed;
-    public int coin;
+    public int coin = 0;
     public float maxHealth;
     [HideInInspector] public  float health; 
     private float maxLane;
@@ -107,6 +107,9 @@ public class Player : MonoBehaviour,PlayerInterface
             case LevelSpeed.ZeroSpeed:
                 speed = 0f;
                 break;
+            case LevelSpeed.UltraFast:
+                speed = maxSpeed + 2;
+                break;
         }
     }
 
@@ -119,6 +122,7 @@ public class Player : MonoBehaviour,PlayerInterface
 
     public void ChangeCoins()
     {
+        PlayerPrefs.SetInt("Coins",coin);
         OnCheckCoins?.Invoke(coin);
     }
     public enum LevelSpeed
@@ -126,6 +130,7 @@ public class Player : MonoBehaviour,PlayerInterface
         Slow,
         Fast,
         Normal,
-        ZeroSpeed
+        ZeroSpeed,
+        UltraFast
     }
 }

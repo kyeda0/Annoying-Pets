@@ -1,7 +1,5 @@
-using System;
 using TMPro;
 using UnityEngine;
-using UnityEngine.AI;
 using YG;
 
 public class Score : MonoBehaviour

@@ -19,11 +19,15 @@ public class LowSpeedObject : GameObjects
                 CheckLanguageForText("-2 скорости","-2 speed");
                 break;
             case Player.LevelSpeed.Slow:
-                 CheckLanguageForText("-0 скорости","-0 speed");
+                CheckLanguageForText("-0 скорости","-0 speed");
                 break;
             case Player.LevelSpeed.Fast:
                 player.ChangeSpeed(Player.LevelSpeed.Normal);
-                 CheckLanguageForText("-2 скорости","-2 speed");
+                CheckLanguageForText("-2 скорости","-2 speed");
+                break;
+            case Player.LevelSpeed.UltraFast:
+                player.ChangeSpeed(Player.LevelSpeed.Fast);
+                CheckLanguageForText("-2 скорости","-2 speed");
                 break;
         }
     }

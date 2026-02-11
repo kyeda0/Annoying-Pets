@@ -13,7 +13,7 @@ public class ManagerShop : MonoBehaviour
     [SerializeField] private int spriteIndex = 0;
     [SerializeField] private int prevIndex;
     [SerializeField] private int nextIndex;
-    [SerializeField] private int coinsPlayer;
+    public int coinsPlayer;
     [SerializeField] private int priceForSkin;
     [SerializeField] private TextMeshProUGUI textPrice;
     [SerializeField] private TextMeshProUGUI textButtonBuy;
@@ -23,9 +23,9 @@ public class ManagerShop : MonoBehaviour
     {
         allSkin = Resources.LoadAll<Sprite>("Skins");
         coinsPlayer = PlayerPrefs.GetInt("Coins");
-        textCoins.text = "x" + coinsPlayer;
         PlayerPrefs.GetInt("SkinsIndex");
         isPurchased = new bool[allSkin.Length];
+        UpdateCoinsText();
         for (int i = 0; i < isPurchased.Length; i++)
         {
            isPurchased[i] = PlayerPrefs.GetInt($"PurchaseSkin{i}", i == 0 ? 1 : 0 ) == 1;
@@ -34,7 +34,10 @@ public class ManagerShop : MonoBehaviour
     }
     
 
-
+    public void UpdateCoinsText()
+    {
+        textCoins.text = "x" + coinsPlayer;
+    }
 
     private void ShowSkins()
     {   
@@ -84,6 +87,7 @@ public class ManagerShop : MonoBehaviour
             LanguageText("Экипировать","Equip ",textButtonBuy);
             LanguageText("У вас есть ","You have ",textPrice);
             StartCoroutine(AnimationShowSkin(0.3f, new Vector2(0f,1f),new Vector2(0f,0f)));
+            UpdateCoinsText();
         }
         else if (isPurchased[spriteIndex] == true)
         {
