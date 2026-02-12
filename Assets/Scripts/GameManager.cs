@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private AudioManager audioManager;
     [SerializeField] private GameObject panelForPause;
     [SerializeField] private CoinsText coinsText;
+    [SerializeField] private TutorialManager tutorialManager;
     private Player playerClone;
     private  StageGame stage;
     private void Start()

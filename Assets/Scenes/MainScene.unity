@@ -173,6 +173,7 @@ MonoBehaviour:
   audioManager: {fileID: 813960104}
   panelForPause: {fileID: 1363154905}
   coinsText: {fileID: 212778187}
+  tutorialManager: {fileID: 0}
 --- !u!1 &212778185
 GameObject:
   m_ObjectHideFlags: 0
@@ -448,6 +449,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bestText: {fileID: 2033361079}
+  textMeshPro: {fileID: 4673157107660494688, guid: 2a06d017cad9dfd4fb95a73d282a7cb5, type: 3}
+  canvas: {fileID: 863563219}
 --- !u!114 &295488054
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -470,8 +473,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1305,7 +1308,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.2
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 0
   Mute: 0
