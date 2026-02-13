@@ -5,6 +5,7 @@ public class AudioManager : MonoBehaviour
 {
     [SerializeField] private AudioSource musicSource;
     [SerializeField] private AudioClip audioClipForButton;
+    [SerializeField] private AudioClip audioClipForText;
     [SerializeField] private AudioSource sfxSource;
     [SerializeField] private GameObject buttonSwitch;
     [SerializeField] private Sprite[] imagesForButton;
@@ -74,4 +75,8 @@ public class AudioManager : MonoBehaviour
         sfxSource.PlayOneShot(audioClipForButton);
     }
 
+    public void AudioForText()
+    {
+        sfxSource.PlayOneShot(audioClipForText);
+    }
 }

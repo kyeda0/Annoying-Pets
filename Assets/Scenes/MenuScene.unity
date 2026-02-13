@@ -1307,6 +1307,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicSource: {fileID: 1453583019}
   audioClipForButton: {fileID: 8300000, guid: 038424e5f0bad5d4d91e41b7d4e4ce8b, type: 3}
+  audioClipForText: {fileID: 0}
   sfxSource: {fileID: 1453583020}
   buttonSwitch: {fileID: 986335230}
   imagesForButton:
@@ -2238,7 +2239,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: 
 --- !u!222 &1941748446
 CanvasRenderer:
   m_ObjectHideFlags: 0

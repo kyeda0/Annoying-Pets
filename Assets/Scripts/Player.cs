@@ -21,6 +21,7 @@ public class Player : MonoBehaviour,PlayerInterface
     public event Action <float,float> OnTakeDamage;
     public event Action <Player.LevelSpeed> OnCheckSpeed;
     public event Action <int> OnCheckCoins;
+    public int countChangeLane;
 
     public bool isMoving;
     public LevelSpeed currentlevelSpeed;
@@ -34,10 +35,8 @@ public class Player : MonoBehaviour,PlayerInterface
         health = maxHealth;
         minLane = -1;
         maxLane = 1;
-        ChangeSpeed(LevelSpeed.Normal);
         allSkin = Resources.LoadAll<Sprite>("Skins");
         GetComponent<SpriteRenderer>().sprite = allSkin[spriteIndex];
-        ChangeCoins();
     }
 
     private void Update()
@@ -66,6 +65,11 @@ public class Player : MonoBehaviour,PlayerInterface
     private void ChangeLane(int direction)
     {
         currentLane = Mathf.Clamp(currentLane + direction,minLane, maxLane );
+        countChangeLane++;
+        if(countChangeLane == 3 && GameObject.Find("TutorialManager") != null )
+        {
+            GameObject.Find("TutorialManager").GetComponent<TutorialManager>().ChangeStageTutorial(TutorialManager.StageTutorial.TwoStage);
+        }
     }
 
     public  void Movement()
@@ -119,7 +123,11 @@ public class Player : MonoBehaviour,PlayerInterface
         SetSpeedLevel();
         OnCheckSpeed?.Invoke(currentlevelSpeed);
     }
-
+    public void ChangeSpeedForTutorial(LevelSpeed levelSpeed)
+    {
+        currentlevelSpeed = levelSpeed;
+        SetSpeedLevel();
+    }
     public void ChangeCoins()
     {
         PlayerPrefs.SetInt("Coins",coin);

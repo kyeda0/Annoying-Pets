@@ -112,4 +112,16 @@ public class GameObjectSpawner : MonoBehaviour
         }
     }
 
+    private void SpawnGameObjectsForTutorial(GameObjects gameObjects)
+    {
+        var block = Instantiate(gameObjects);
+        block.player = targetPlayer;
+        block.transform.position = new Vector2(targetPlayer.transform.position.x,6f);
+        OnSpawnedBlock?.Invoke(block);
+    }
+    public void StartSpawnObjectForTutorial(GameObjects gameObjects)
+    {
+        SpawnGameObjectsForTutorial(gameObjects);
+    }
+
 }

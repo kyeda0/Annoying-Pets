@@ -21,7 +21,17 @@ public class GameManager : MonoBehaviour
     private  StageGame stage;
     private void Start()
     {
-        ChangeGameStage(StageGame.StartStage);
+        tutorialManager.isFirstGame = PlayerPrefs.GetInt("IsFirstGame");
+        playerClone = Instantiate(playerOriginal,new Vector2(0f,-4f),Quaternion.identity);
+        if( tutorialManager.isFirstGame  == 0)
+        {
+            tutorialManager.OnFinishedTutorial += RestartGame;
+            ChangeGameStage(StageGame.TutorialStage);
+        }
+        else
+        {
+            ChangeGameStage(StageGame.StartStage);
+        }
     }
 
     private void MainStageGame()
@@ -30,14 +40,16 @@ public class GameManager : MonoBehaviour
         {
             case StageGame.StartStage:
                 panelForGameOver.SetActive(false);
-                playerClone = Instantiate(playerOriginal,new Vector2(0f,-4f),Quaternion.identity);
+                gameObjectSpawner.targetPlayer = playerClone;
                 playerClone.OnGameOverEvent += HandleGameOverStage;
                 playerClone.OnTakeDamage += HandleTakeDamageUI; 
                 playerClone.OnCheckSpeed += HandleSetMusic;
                 playerClone.OnCheckCoins += HandleUpdateCoins;
+                tutorialManager.gameObject.SetActive(false);
                 score.gameObject.SetActive(true);
                 gameObjectSpawner.OnSpawnedBlock += HandleBlockSpawned;
-                gameObjectSpawner.targetPlayer = playerClone;
+                playerClone.ChangeSpeed(Player.LevelSpeed.Normal);
+                playerClone.ChangeCoins();
                 ChangeGameStage(StageGame.PlayningStage);
                 break;
             case StageGame.PlayningStage:
@@ -65,7 +77,13 @@ public class GameManager : MonoBehaviour
                 hud.SetActive(false);
                 break;
             case StageGame.TutorialStage:
-                
+                gameObjectSpawner.targetPlayer = playerClone;
+                playerClone.isMoving = true;
+                playerClone.ChangeSpeedForTutorial(Player.LevelSpeed.Normal);
+                playerClone.OnGameOverEvent += HandleGameOverStage;
+                playerClone.OnTakeDamage += HandleTakeDamageUI; 
+                gameObjectSpawner.OnSpawnedBlock += HandleBlockSpawned;
+                tutorialManager.ChangeStageTutorial(TutorialManager.StageTutorial.FirstStage);
                 break;
         }
     }
@@ -112,6 +130,8 @@ public class GameManager : MonoBehaviour
     {
         playerClone.OnGameOverEvent -= HandleGameOverStage;
         playerClone.OnTakeDamage -= HandleTakeDamageUI; 
+        playerClone.OnCheckSpeed -= HandleSetMusic;
+        playerClone.OnCheckCoins -= HandleUpdateCoins;
         gameObjectSpawner.OnSpawnedBlock -= HandleBlockSpawned;
         SceneManager.LoadScene("MainScene");
     }

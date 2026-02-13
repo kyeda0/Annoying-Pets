@@ -12,6 +12,9 @@ public abstract class GameObjects : MonoBehaviour
     public Color colorForText;
     public event Action OnAddScore;
     public event Action<TextMeshPro> onTextBuff;
+
+    public event Action OnTutorialObjectActivated;
+
     public virtual void ActivityObject()
     {
         onTextBuff?.Invoke(textBuff);
